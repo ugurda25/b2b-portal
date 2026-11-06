@@ -1,7 +1,7 @@
 -- =====================================================
 -- B2B Portal - Veritabanı Başlangıç Scripti
 -- Otomatik oluşturuldu: Docker MSSQL export
--- Kullanıcı şifreleri güvenlik amacıyla maskelenmiştir (Test123!)
+-- Kullanıcı şifreleri güvenlik amacıyla maskelenmiştir (sifre123456)
 -- =====================================================
 
 IF DB_ID('B2B_Project_DB') IS NULL
@@ -566,10 +566,10 @@ INSERT INTO [Products] ([Id],[Barcode],[Name],[AvailableStock],[CostPrice],[Whol
 INSERT INTO [Products] ([Id],[Barcode],[Name],[AvailableStock],[CostPrice],[WholeSalePrice],[Currency],[MinOrderQuantity],[IsActive],[ImageBase64]) VALUES (3004,'asd213434','yeni',100,250.00,300.00,'TRY',5,1,NULL);
 SET IDENTITY_INSERT [Products] OFF;
 SET IDENTITY_INSERT [Users] ON;
-INSERT INTO [Users] ([Username],[Password],[CompanyName],[Role],[CreditLimit],[CurrentBalance],[IsActive],[Email],[Phone],[Address],[TaxOffice],[PasswordResetRequested]) VALUES ('marmara_giyim','Test123!','Marmara Tekstil San. Tic. Ltd. Şti.','BAYI',200000.00,180449.98,1,'iletisim@marmaratekstil.com','0212 666 20 25','Mehmet Nesih Özmen Mah. No:25 Güngören / Istanbul','Güngören V.D. - 2345167890',0);
-INSERT INTO [Users] ([Username],[Password],[CompanyName],[Role],[CreditLimit],[CurrentBalance],[IsActive],[Email],[Phone],[Address],[TaxOffice],[PasswordResetRequested]) VALUES ('akdeniz_giyim','Test123!','Akdeniz Tekstil San. Tic. Ltd. Şti.','BAYI',100000.00,98800.00,1,'iletisim@akdeniztekstil.com','0212 555 10 30','Merkez Mah. Sanayi Cad. No:14 Güngören / Istanbul','Güngören V.D. - 1234567890',0);
-INSERT INTO [Users] ([Username],[Password],[CompanyName],[Role],[CreditLimit],[CurrentBalance],[IsActive],[Email],[Phone],[Address],[TaxOffice],[PasswordResetRequested]) VALUES ('admin','Test123!','Ugur Giyim Genel Merkez','ADMIN',0.00,0.00,1,'admin@ugurgiyim.com',NULL,NULL,NULL,0);
-INSERT INTO [Users] ([Username],[Password],[CompanyName],[Role],[CreditLimit],[CurrentBalance],[IsActive],[Email],[Phone],[Address],[TaxOffice],[PasswordResetRequested]) VALUES ('denemeisim','Test123!','deneme','BAYI',0.00,64550.00,1,'asfasklfsda@gmail.com','5314565656','asfkaslfgalsfga','asd123213',0);
+INSERT INTO [Users] ([Username],[Password],[CompanyName],[Role],[CreditLimit],[CurrentBalance],[IsActive],[Email],[Phone],[Address],[TaxOffice],[PasswordResetRequested]) VALUES ('marmara_giyim','sifre123456','Marmara Tekstil San. Tic. Ltd. Şti.','BAYI',200000.00,180449.98,1,'iletisim@marmaratekstil.com','0212 666 20 25','Mehmet Nesih Özmen Mah. No:25 Güngören / Istanbul','Güngören V.D. - 2345167890',0);
+INSERT INTO [Users] ([Username],[Password],[CompanyName],[Role],[CreditLimit],[CurrentBalance],[IsActive],[Email],[Phone],[Address],[TaxOffice],[PasswordResetRequested]) VALUES ('akdeniz_giyim','sifre123456','Akdeniz Tekstil San. Tic. Ltd. Şti.','BAYI',100000.00,98800.00,1,'iletisim@akdeniztekstil.com','0212 555 10 30','Merkez Mah. Sanayi Cad. No:14 Güngören / Istanbul','Güngören V.D. - 1234567890',0);
+INSERT INTO [Users] ([Username],[Password],[CompanyName],[Role],[CreditLimit],[CurrentBalance],[IsActive],[Email],[Phone],[Address],[TaxOffice],[PasswordResetRequested]) VALUES ('admin','sifre123456','Ugur Giyim Genel Merkez','ADMIN',0.00,0.00,1,'admin@ugurgiyim.com',NULL,NULL,NULL,0);
+INSERT INTO [Users] ([Username],[Password],[CompanyName],[Role],[CreditLimit],[CurrentBalance],[IsActive],[Email],[Phone],[Address],[TaxOffice],[PasswordResetRequested]) VALUES ('denemeisim','sifre123456','deneme','BAYI',0.00,64550.00,1,'asfasklfsda@gmail.com','5314565656','asfkaslfgalsfga','asd123213',0);
 
 SET IDENTITY_INSERT [Users] OFF;
 SET IDENTITY_INSERT [Orders] ON;

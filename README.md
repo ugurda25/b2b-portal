@@ -2,6 +2,29 @@
 
 Üniversite projesi olarak geliştirilmiş, bayi (B2B) sipariş yönetimi, stok takibi, otomatik tekrarlı sipariş ve sadakat programı özellikleri içeren web uygulaması.
 
+## Ekran Görüntüleri
+
+### Giriş Sayfası
+![Giriş](docs/images/login.png)
+
+### Bayi Paneli
+| Mağaza | Siparişlerim | Tekrarlı Siparişler |
+|--------|-------------|---------------------|
+| ![Mağaza](docs/images/bayi-magaza.png) | ![Siparişler](docs/images/bayi-siparisler.png) | ![Tekrarlı](docs/images/bayi-tekrarli.png) |
+
+| Bakiye | Sadakat |
+|--------|---------|
+| ![Bakiye](docs/images/bayi-bakiye.png) | ![Sadakat](docs/images/bayi-sadakat.png) |
+
+### Yönetim Paneli (Admin)
+| Dashboard | Ürün Yönetimi | Sipariş Yönetimi |
+|-----------|--------------|-----------------|
+| ![Dashboard](docs/images/admin-dashboard.png) | ![Ürünler](docs/images/admin-urunler.png) | ![Siparişler](docs/images/admin-siparisler.png) |
+
+| Bayi Yönetimi | Otomatik Siparişler |
+|--------------|---------------------|
+| ![Bayiler](docs/images/admin-bayiler.png) | ![Otomatik](docs/images/admin-otomatik.png) |
+
 ## Teknolojiler
 
 | Katman | Teknoloji |
@@ -29,6 +52,7 @@ b2b-portal/
 ├── database/
 │   ├── init.sql            # Veritabanı şeması + örnek veriler
 │   └── *.sql               # Ek SQL dosyaları
+├── docs/images/            # Ekran görüntüleri
 ├── docker-compose.yml      # MSSQL Docker kurulumu
 └── pom.xml                 # Maven bağımlılıkları
 ```
@@ -129,11 +153,11 @@ npx serve -p 3000
 
 | Kullanıcı Adı | Şifre | Rol |
 |---------------|-------|-----|
-| `admin` | `Test123!` | ADMIN (Yönetici) |
-| `marmara_giyim` | `Test123!` | BAYI (Bayi) |
-| `akdeniz_giyim` | `Test123!` | BAYI (Bayi) |
+| `admin` | `sifre123456` | ADMIN (Yönetici) |
+| `marmara_giyim` | `sifre123456` | BAYI (Bayi) |
+| `akdeniz_giyim` | `sifre123456` | BAYI (Bayi) |
 
-> Tüm örnek kullanıcı şifreleri `Test123!` olarak maskelenmiştir.
+> Tüm örnek kullanıcı şifreleri `sifre123456` olarak maskelenmiştir.
 
 ## Özellikler
 
@@ -150,10 +174,10 @@ npx serve -p 3000
 | Endpoint | Açıklama |
 |----------|----------|
 | `POST /api/Users/login` | Giriş |
-| `GET /api/Products` | Ürün listesi |
-| `POST /api/Orders` | Sipariş oluştur |
+| `GET /api/Products/list` | Ürün listesi |
+| `POST /api/Orders/save` | Sipariş oluştur |
 | `GET /api/Orders/user/{id}` | Kullanıcı siparişleri |
-| `POST /api/RecurringOrders` | Tekrarlı sipariş |
+| `POST /api/RecurringOrders/save` | Tekrarlı sipariş |
 | `GET /api/AdminDashboard` | Dashboard verisi |
 
 ## Güvenlik Notları

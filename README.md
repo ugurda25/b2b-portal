@@ -11,6 +11,12 @@
 | Veritabanı | MSSQL (Azure SQL Edge, Docker) |
 | Ek | Lombok, BCrypt (şifre hashleme) |
 
+## Gereksinimler
+
+- **Java JDK 21** — [Adoptium](https://adoptium.net) veya [Oracle](https://www.oracle.com/java/technologies/downloads/)
+- **Docker Desktop** — [Docker Hub](https://www.docker.com/products/docker-desktop/) (Windows ve macOS için)
+- **Git** — [git-scm.com](https://git-scm.com)
+
 ## Repo Yapısı
 
 ```
@@ -29,50 +35,95 @@ b2b-portal/
 
 ## Kurulum
 
-### 1. Veritabanı (Docker)
+### 1. Projeyi Klonlayın
 
 ```bash
-# MSSQL container'ı başlat
-docker compose up -d
+git clone https://github.com/ugurda25/b2b-portal.git
+cd b2b-portal
+```
 
-# Veritabanı şemasını ve örnek verileri yükle
+### 2. Veritabanı (Docker)
+
+**Windows (PowerShell) ve macOS / Linux:**
+
+```bash
+docker compose up -d
+```
+
+Veritabanı şemasını ve örnek verileri yükleyin:
+
+**macOS / Linux (Terminal):**
+
+```bash
 docker exec -i b2b-mssql /opt/mssql-tools/bin/sqlcmd \
   -S localhost -U sa -P 'YourStrong!Passw0rd' \
   -i /dev/stdin < database/init.sql
 ```
 
-> **Güvenlik notu:** `docker-compose.yml` içindeki varsayılan şifre sadece yerel geliştirme içindir. Üretim ortamında `MSSQL_SA_PASSWORD` ortam değişkenini güçlü bir şifreyle değiştirin.
+**Windows (PowerShell):**
 
-### 2. Backend (Spring Boot)
-
-```bash
-# Gerekli: JAVA_HOME -> JDK 21
-./mvnw spring-boot:run
+```powershell
+Get-Content database\init.sql | docker exec -i b2b-mssql /opt/mssql-tools/bin/sqlcmd `
+  -S localhost -U sa -P 'YourStrong!Passw0rd' -i /dev/stdin
 ```
 
-Backend `http://localhost:8080` üzerinde çalışır.
+> **Güvenlik notu:** `docker-compose.yml` içindeki varsayılan şifre sadece yerel geliştirme içindir. Üretim ortamında `MSSQL_SA_PASSWORD` ortam değişkenini güçlü bir şifreyle değiştirin.
 
-**Veritabanı bağlantısı** (`src/main/resources/application.properties`):
-- `DB_USERNAME` — varsayılan: `sa`
-- `DB_PASSWORD` — ortam değişkeni olarak ayarlayın
+### 3. Backend (Spring Boot)
+
+Önce `DB_PASSWORD` ortam değişkenini ayarlayın:
+
+**macOS / Linux:**
 
 ```bash
 export DB_PASSWORD='YourStrong!Passw0rd'
 ./mvnw spring-boot:run
 ```
 
-### 3. Frontend
+**Windows (PowerShell):**
+
+```powershell
+$env:DB_PASSWORD='YourStrong!Passw0rd'
+.\mvnw.cmd spring-boot:run
+```
+
+**Windows (CMD):**
+
+```cmd
+set DB_PASSWORD=YourStrong!Passw0rd
+mvnw.cmd spring-boot:run
+```
+
+Backend `http://localhost:8080` üzerinde çalışır.
+
+### 4. Frontend
 
 Frontend statik dosyalardan oluşur. Herhangi bir statik sunucuyla servis edilebilir:
 
-```bash
-# Python ile
-cd frontend && python3 -m http.server 3000
+**macOS / Linux (Python):**
 
-# Veya VS Code Live Server uzantısı
+```bash
+cd frontend
+python3 -m http.server 3000
+```
+
+**Windows (PowerShell — Python varsa):**
+
+```powershell
+cd frontend
+python -m http.server 3000
+```
+
+**Alternatif (Node.js varsa, her iki platform):**
+
+```bash
+cd frontend
+npx serve -p 3000
 ```
 
 `http://localhost:3000` adresinden erişilir.
+
+> **Not:** Frontend ES Modules kullandığı için `file://` üzerinden açılamaz; mutlaka bir HTTP sunucusu üzerinden servis edilmelidir.
 
 ## Test Kullanıcıları
 

@@ -1,0 +1,15 @@
+.sidebar {
+    width: 270px;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    overflow-y: auto;
+    background-color: #212529; /* Koyu tema */
+    z-index: 1000;
+}
+.main-content {
+    margin-left: 270px;
+    min-height: 100vh;
+    background-color: #f8f9fa;
+}
